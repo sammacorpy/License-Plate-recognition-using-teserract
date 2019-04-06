@@ -1,0 +1,5 @@
+<topnav (clicksidenav)="sidenavstat=!sidenavstat" [activesidenavbutton]="!sidenavstat"></topnav >
+
+<sidenav [showsidenav]="sidenavstat" (clicksidenavbg)="sidenavstat=!sidenavstat"></sidenav>
+
+<router-outlet></router-outlet>

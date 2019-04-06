@@ -1,0 +1,8 @@
+<div class="oldbook">
+
+  <div class="row no-gutter news">
+    <div class="col news-cards" *ngFor="let tollitem of tollRecords |async;">
+      <news-card [toll]="tollitem" [mode]="0"></news-card>
+    </div>
+    </div>
+</div>

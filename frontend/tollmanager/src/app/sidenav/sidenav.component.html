@@ -1,0 +1,27 @@
+<section class="sdnavbackgrd" *ngIf="showsidenav" (click)="clicksdnav()">
+  <section class = "sideNav" *ngIf="showsidenav">
+  
+    <div class="profile" *ngIf="user && !user.isAnonymous">
+      <img [src]="user.photoURL" routerLink="/u/profile" [alt]="user.displayName" class="image" width="140px" height="140px">
+      <div class="username">
+        {{"Hello "+user.displayName+"!"}}
+      </div>
+    </div>
+    <div class="profile adjust" *ngIf="user && user.isAnonymous">
+      
+      <div class="username">
+        {{"Hello Anonymous!"}}
+      </div>
+    </div>
+  
+    <div class="contents">
+      <div routerLink="/u" class="items">Home</div>
+      <div routerLink="/u/history" class="items">History</div>
+      
+      <div routerLink="" class="items" (click)="signout()">Sign Out</div>
+      
+    </div>
+  </section>
+  
+</section>
+

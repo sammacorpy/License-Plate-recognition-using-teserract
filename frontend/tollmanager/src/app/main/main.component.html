@@ -1,0 +1,99 @@
+<section class="main-news">
+  <div class="loco-jumbotron">
+    Toll Manager
+  </div>
+
+
+  <div class="outerdrop">
+
+
+
+    <div class="dropfiles" *ngIf="manual">
+      <ng-container *ngIf="imageuploadpreUrl">
+        <div class="dropZone" Class="active" [style.background-image]="'url('+imageuploadpreUrl+')'">
+          <div id="clearallbutton">
+            <mat-icon class="cloudicon" (click)="clearBucket()" matTooltip="Click here to clear your upload bucket"
+              matTooltipPosition="right">close</mat-icon>
+          </div>
+
+
+
+        </div>
+      </ng-container>
+
+
+      <ng-container *ngIf="!imageuploadpreUrl">
+        <div class="dropZone" Dropzone (filesDropped)="handleDrop($event)" (filesHovered)="dropactivestatus($event)"
+          [ngClass]="{'active':dropactive}">
+          <label for="fileidup" matTooltip="Drop it here or click to upload files" matTooltipPosition="right">
+            <mat-icon class="cloudicon" style="cursor: pointer">cloud_upload</mat-icon>
+          </label>
+          <input id="fileidup" style="display: none;" type="file" (change)="detectFiles($event)">
+          <div class="button-upload txt4">
+            Drop your Image here
+          </div>
+
+
+        </div>
+      </ng-container>
+
+    </div>
+
+
+    <div class="dropfiles automatic-camera" *ngIf="!manual">
+
+      <div>
+        <webcam [height]="500" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+          *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+          [videoOptions]="videoOptions" [imageQuality]="1" (initError)="handleInitError($event)"
+          (click)="triggerSnapshot();">
+
+        </webcam>
+        <div class="tapme">
+          <div class="tapmeinner"></div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="btn-mode-change">
+
+      <button *ngIf="!manual" mat-button class="post-btn manual" (click)="manual=!manual; showWebcam=!showWebcam">upload Image file
+      </button>
+    </div>
+    <div class="btn-mode-change">
+      <button *ngIf="manual" mat-button class="post-btn" (click)="manual=!manual;showWebcam=!showWebcam">Use Camera</button>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- <div *ngIf="attachmentClicked;then uploadDocuments"></div> -->
+
+
+
+
+
+
+
+  <div class="row no-gutter news">
+    <div class="col news-cards" *ngFor="let tollitem of tollRecords | async; trackBy: trackrecord">
+      <news-card [toll]="tollitem"  [mode]="0"></news-card>
+    </div>
+
+  </div>
+
+  <div infiniteScroll [infiniteScrollDistance]="1.5" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
+</section>

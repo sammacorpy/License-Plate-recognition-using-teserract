@@ -1,0 +1,26 @@
+<mat-card class="loco-card">
+
+  <mat-card-header>
+    <div mat-card-avatar class="header-user-icon"><img *ngIf="false" class="user-icon" width="40px" height="40px" [src]="toll.userinfo.photoURL" alt=""><img *ngIf="toll.userinfo==null" class="user-icon" width="40px" height="40px" src="/assets/avatar.png" alt=""></div>
+    <mat-card-title class="title">{{toll.vin}}</mat-card-title>
+    <mat-card-subtitle *ngIf="toll.car_det">{{toll.car_det}}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="toll.car_det==null">{{"Unknown type"}}</mat-card-subtitle>
+    <!-- <div class="editpost" *ngIf="mode==1 && user && user.uid==toll.author"><mat-icon  [routerLink]="'/u/editpost/'+toll.author+'/'+toll.id" class="action flex">edit</mat-icon></div> -->
+  </mat-card-header>
+
+  <img *ngIf="toll.photoURL" mat-card-image [src]="toll.photoURL" alt="toll" height="220px">
+  <img *ngIf="!toll.photoURL" mat-card-image src="/assets/noimage.png" alt="toll" height="220px">
+
+
+  <mat-card-content>
+    <div class="contents-item">
+      
+      Email: {{toll.email}}<br>
+      Name: {{toll.name}}<br>
+      Paid: {{toll.cost}}
+    </div>
+
+  </mat-card-content>
+
+
+</mat-card>
